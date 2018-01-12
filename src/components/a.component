@@ -1,0 +1,20 @@
+<can-component tag="a-c">
+  <style type="less">
+    display: block;
+
+    p { font-weight: bold; }
+  </style>
+  <view>
+    <p>{{message}}</p>
+  </view>
+  <script type="view-model">
+    import DefineMap from 'can-define/map/';
+    import './shared.css';
+
+    export default DefineMap.extend({
+      message: {
+        value: 'This is the a-c component'
+      }
+    });
+  </script>
+</can-component>

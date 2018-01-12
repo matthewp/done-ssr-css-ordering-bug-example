@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <can-import from="bundle-order/styles.less" />
+    <can-import from="bundle-order/app" export-as="viewModel" />
+    <can-import from="can-stache/helpers/route" />
+
+    <h1>My app!</h1>
+
+    <a href="{{routeUrl(page="a")}}">Page A</a>
+    <a href="{{routeUrl(page="b")}}">Page B</a>
+
+    {{#switch page}}
+      {{#case "a"}}
+        <can-import from="~/components/a.component">
+          {{#if isResolved}}
+            <a-c></a-c>
+          {{/if}}
+        </can-import>
+      {{/case}}
+      {{#case "b"}}
+        <can-import from="~/components/b.component">
+          {{#if isResolved}}
+            <b-c></b-c>
+          {{/if}}
+        </can-import>
+      {{/case}}
+    {{/switch}}
+
+    {{#switch env.NODE_ENV}}
+      {{#case "production"}}
+        <script src="{{joinBase 'steal.production.js'}}"></script>
+      {{/case}}
+      {{#default}}
+        <script src="/node_modules/steal/steal.js"></script>
+      {{/default}}
+    {{/switch}}
+  </body>
+</html>
