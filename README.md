@@ -1,42 +1,62 @@
-# bundle-order
+# done-ssr CSS ordering bug example
 
-Welcome to the bundle-order DoneJS application!
+This is an example application meant to demonstrate [this bug](https://github.com/donejs/done-ssr/issues/450). Currently it is not able to replicate it.
 
-## Getting started
-
-To install all dependencies, (e.g. after cloning it from a Git repository) run
+The import files are:
 
 ```
-npm install donejs -g
-npm install
+- components
+  - a.component
+  - b.component
+  - shared.css
+- index.stache
 ```
 
-## Running tests
+__a.component__ and __b.component__ are components that are both dynamically imported in the index.stache. They are our different pages. __shared.css__ are styles shared with a.component and b.component.
 
-Tests can be run with
+According to the bug, it is possible to have the CSS ordering to be incorrect *in production*.
 
-```
-donejs test
-```
+Here we would want, when loading page __a__ to see index.css, a.component's css, and then the shared.css.
 
-## Development mode
+Currently they are ordering correctly. If you can make it break, please do!
 
-Development mode can be started with
 
-```
-donejs develop
-```
+## Current output
 
-## Build and production mode
-
-To build the application into a production bundle run
-
-```
-donejs build
-```
-
-In Unix environment the production application can be started like this:
-
-```
-NODE_ENV=production npm start
+```html
+<html>
+ <head>
+  <title>
+  </title>
+  <link rel="stylesheet" href="/dist/bundles/bundle-order/index.css" asset-id="bundles/bundle-order/index.css!done-css@3.0.1#css">
+  <link rel="stylesheet" href="/dist/bundles/bundle-order/components/a.css" asset-id="bundles/bundle-order/components/a.css!done-css@3.0.1#css">
+  <link rel="stylesheet" href="/dist/bundles/a-component-b-component.css" asset-id="bundles/a-component-b-component.css!done-css@3.0.1#css">
+ </head>
+ <body>
+  <can-import from="bundle-order/styles.less">
+  </can-import>
+  <can-import from="bundle-order/app" export-as="viewModel">
+  </can-import>
+  <can-import from="can-stache/helpers/route">
+  </can-import>
+  <h1>
+   My app!
+  </h1>
+  <a href="/a">
+   Page A
+  </a>
+  <a href="/b">
+   Page B
+  </a>
+  <can-import from="~/components/a.component">
+   <a-c>
+    <p>
+     This is the a-c component
+    </p>
+   </a-c>
+  </can-import>
+  <script src="/dist/steal.production.js">
+  </script>
+ </body>
+</html>
 ```
