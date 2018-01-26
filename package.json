@@ -47,7 +47,11 @@
         "renderingBaseURL": "/dist"
       }
     },
-    "serviceBaseURL": ""
+    "serviceBaseURL": "",
+		"bundle": [
+			"bundle-order/components/a.component!",
+			"bundle-order/components/b.component!"
+		]
   },
   "dependencies": {
     "can-component": "^3.3.5",
