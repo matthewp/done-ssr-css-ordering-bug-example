@@ -6,8 +6,10 @@
     <can-import from="bundle-order/styles.less" />
     <can-import from="bundle-order/app" export-as="viewModel" />
     <can-import from="can-stache/helpers/route" />
+		<can-import from="~/components/header.component"/>
 
-    <h1>My app!</h1>
+		<header-common></header-common>
+
 
     <a href="{{routeUrl(page="a")}}">Page A</a>
     <a href="{{routeUrl(page="b")}}">Page B</a>

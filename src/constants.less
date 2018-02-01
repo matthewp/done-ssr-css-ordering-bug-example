@@ -1,0 +1,537 @@
+/********** Constant Variables  **********/
+
+// primary brand colours
+@charcoal: #444444;	// regular text, titles, buttons
+@lightCharcoal: lighten(@charcoal, 20%);	// (#777777)
+@tingBlue: #00aaee; 	// links, buttons, topnav
+@tingBlueRGB: 0,170,238; 	// links, buttons, topnav
+@white: #ffffff;
+
+// secondary brand colours
+// greys
+@grey: lighten(@charcoal, 50%);		// (#C3C3C3) input text
+@lightGrey: #e8e8e8;	// lines, disabled input text
+@subtleGrey: #f4f4f4;	// backgrounds
+@softGrey: lighten(@charcoal, 25%);		// (#848484) May be used in the future to draw attention to important elements and call-to-actions
+@transparentGrey: rgba(51, 51, 51, 0.65); // Shop page overlay
+
+@lightishGrey: #666666; // No rules of use provided for this one. Sorry about the stupid name. I'm running out of colour names for all the different greys
+
+@lightSubtleGrey: #f8f8f8; // background for small components on mobile
+
+// blues
+@darkBlue: #008bc3; // nav selection
+@darkBlueLines: #0d94d0; // section dividing line
+@lightBlue: #99ddf8;	// input field border
+@softBlue: #d1f0fc;		// backgrounds
+@subtleBlue: #f3fcff;	// input fields
+
+// colours
+@green: #34d26b;
+@yellow: #E3FF33;
+@red: #ED371C;
+@orange: #ffb027;	// notification alert (used in 'internet-order-plans')
+@lightOrange: fade(@orange, 10%);	// notification alert background (used in 'internet-order-plans')
+
+// colours that need to be figured out because they're not in the styleguide
+@50PercentWhite : #999;
+@customerSupportGrey: #7bb10f; // grey used for customer support offline status
+@iconGrey: #c7c7c7;	// all grey icons
+@deviceNoticeGreen: #eefcf2;
+
+// svg color fixes
+@svgTingBlue: escape(@tingBlue);// escape regular ting blue for svgs or the colour doesn't take
+@svgGrey: escape(@grey);// escape regular grey for svgs or the colour doesn't take
+
+// break points and widths
+@max-width: 1200px;
+// this is the horizontal buffer design wants between the edge of the browser and the content
+@side-padding: 30px;
+// this is the max width of the content. It's 12 columns but we may change the column width so it needs to be dynmaimcally generated
+@max-functional-width: @max-width * (@12cols * .01);
+
+// breakpoints based on device view
+// use these breakpoints instead of the old ones
+@bp-xs: 400px;
+@bp-portrait: 600px;
+@bp-landscape: 1024px;
+@bp-xl: @max-width;
+
+
+// media query strings
+// NOTE: the default size designed for is 400-600px (mobile phones)
+// everything less than the smallest cut off - rarely used
+@mq-xs: ~"only screen and (max-width: "@bp-xs~")";
+// everything as big or bigger than portrait-min (or tablet) sized
+@mq-portrait: ~"only screen and (min-width: "@bp-portrait~")";
+// everything as big or bigger than landscape-min or laptop-min sized
+@mq-landscape: ~"only screen and (min-width: "@bp-landscape~")";
+// everything bigger than the largest possible size
+@mq-xl: ~"only screen and (min-width: "@bp-xl~")";
+
+// Media query for retina screens
+// Desktop screen devices
+@mq-retina: ~"(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
+// everything as big or bigger than portrait-min (or tablet) sized with retina display
+@mp-retina-portrait: ~"(min-device-width: "@bp-portrait~") and (-webkit-min-device-pixel-ratio: 2), (min-device-width: "@bp-portrait~") and (min-resolution: 192dpi), (min-width: "@bp-portrait~") and (-webkit-min-device-pixel-ratio: 2), (min-width: "@bp-portrait~") and (min-resolution: 192dpi)";
+// everything as big or bigger than landscape-min or laptop-min sized with retina display
+@mp-retina-landscape: ~"(min-device-width: "@bp-landscape~") and (-webkit-min-device-pixel-ratio: 2), (min-device-width: "@bp-landscape~") and (min-resolution: 192dpi), (min-width: "@bp-landscape~") and (-webkit-min-device-pixel-ratio: 2), (min-width: "@bp-landscape~") and (min-resolution: 192dpi)";
+
+// general constants
+@border-radius: 9px;
+
+// image directory
+@imgDir: '/static/images';
+
+// fixed gutters and columns
+@horizontal-gutter:  40px;
+@half-horizontal-gutter: @horizontal-gutter/2;
+@vertical-gutter: 50px;
+@half-vertical-gutter: @vertical-gutter/2;
+@horizonal-padding: 15px;
+
+@column: 66px;
+@half-column: @column/2;
+@gutter: 36px;
+@half-gutter: @gutter/2;
+
+// col widths
+@gutterPercent: 3%;
+@columnPercent: 5.5%;
+
+@12cols: (@columnPercent * 12) + (@gutterPercent * 11); // 99% (1188px)
+@11cols: (@columnPercent * 11) + (@gutterPercent * 10);// 90.5% (1086px)
+@10cols: (@columnPercent * 10) + (@gutterPercent * 9); // 82% (984px)
+@9cols: (@columnPercent * 9) + (@gutterPercent * 8); // 73.5% (882px)
+@8cols: (@columnPercent * 8) + (@gutterPercent * 7); // 65% (780px)
+@7colsPlus: (@columnPercent * 7) + (@gutterPercent * 8); // 62.5%
+@7colsSoftPlus: (@columnPercent * 7) + (@gutterPercent * 7); // 59.5% (714px)
+@7cols: (@columnPercent * 7) + (@gutterPercent * 6); //  56.5% (678px)
+@6colsPlus: (@columnPercent * 6) + (@gutterPercent * 7); // 54% (648px)
+@6cols: (@columnPercent * 6) + (@gutterPercent * 5); // 48% (576px)
+@5cols: (@columnPercent * 5) + (@gutterPercent * 4); // 39.5% (474px)
+@4cols: (@columnPercent * 4) + (@gutterPercent * 3); //31% (372px)
+@3colsPlus: (@columnPercent * 3) + (@gutterPercent * 4); //28.5% (342px)
+@3colsSoftPlus: (@columnPercent * 3) + (@gutterPercent * 3); //25.5% (306px)
+@3cols: (@columnPercent * 3) + (@gutterPercent * 2); //22.5% (270px)
+@2cols: (@columnPercent * 2) + (@gutterPercent * 1); //14% (168px)
+@1colPlus: (@columnPercent * 1) + (@gutterPercent * 2); //11.5% (138px)
+@1colSoftPlus: (@columnPercent * 1) + (@gutterPercent * 1); //8.5% (102px)
+@1col: (@columnPercent * 1); //5.5%
+
+// use max width rule for max widths
+//.max-width-rule(@10cols);
+
+// Vertical spacing
+@verticalModifier: 9px;
+
+@1x: 1 * @verticalModifier;	// 9px
+@2x: 2 * @verticalModifier;	// 18px
+@3x: 3 * @verticalModifier;	// 27px
+@4x: 4 * @verticalModifier;	// 36px
+@5x: 5 * @verticalModifier;	// 45px
+@6x: 6 * @verticalModifier;	// 54px
+@7x: 7 * @verticalModifier;	// 63px
+@8x: 8 * @verticalModifier;	// 72px
+@9x: 9 * @verticalModifier;	// 81px
+@10x: 10 * @verticalModifier;	// 90px
+@11x: 11 * @verticalModifier;	// 99px
+
+@verticalModifier_legacy: 5px;
+
+@1x_legacy: 1 * @verticalModifier_legacy;
+@2x_legacy: 2 * @verticalModifier_legacy;	// 10px
+@3x_legacy: 3 * @verticalModifier_legacy;	// 15px
+@4x_legacy: 4 * @verticalModifier_legacy;	// 20px
+@5x_legacy: 5 * @verticalModifier_legacy;	// 25px
+@6x_legacy: 6 * @verticalModifier_legacy;	// 30px
+@7x_legacy: 7 * @verticalModifier_legacy;
+@8x_legacy: 8 * @verticalModifier_legacy;	// 40px
+@9x_legacy: 9 * @verticalModifier_legacy;	// 45px
+@10x_legacy: 10 * @verticalModifier_legacy;	// 50px
+@11x_legacy: 11 * @verticalModifier_legacy;
+@12x_legacy: 12 * @verticalModifier_legacy;	// 60px
+@13x_legacy: 13 * @verticalModifier_legacy;
+@14x_legacy: 14 * @verticalModifier_legacy;	// 70px
+@15x_legacy: 15 * @verticalModifier_legacy;	// 75px
+@16x_legacy: 16 * @verticalModifier_legacy;	// 80px
+@17x_legacy: 17 * @verticalModifier_legacy;	// 85px
+@18x_legacy: 18 * @verticalModifier_legacy;	// 90px
+@19x_legacy: 19 * @verticalModifier_legacy;	// 95px
+@20x_legacy: 20 * @verticalModifier_legacy;	// 100px
+
+// font-sizes and line heights
+// grouped by functional display
+
+// page headline font
+@displayFontSize: 28px;
+@displayLineHeight: 34px;
+.displayFont() {
+	.font-rule(@displayFontSize, @displayLineHeight);
+}
+
+// section headline font
+@titleFontSize: 24px;
+@titleLineHeight: 30px;
+.titleFont() {
+	.font-rule(@titleFontSize, @titleLineHeight);
+	font-weight: @font-semi-bold
+}
+
+@subtitle2FontSize: 20px;
+@subtitle2LineHeight: 27px;
+.subtitle2Font() {
+	.font-rule(@subtitle2FontSize, @subtitle2LineHeight);
+}
+
+// subsection headline font
+// main title on flow pages
+@subtitleFontSize: 18px;
+@subtitleLineHeight: 27px;
+.subtitleFont() {
+	.font-rule(@subtitleFontSize, @subtitleLineHeight);
+}
+
+// table titles
+@tableTitleFontSize: 16px;
+.tableTitleFont() {
+	font-size: @tableTitleFontSize;
+	text-transform: uppercase;
+}
+
+// used for the tagline/intro copy beneath headlines
+@introFontSize: 16px;
+@introLineHeight: 24px;
+.introFont() {
+	.font-rule(@introFontSize, @introLineHeight);
+}
+
+// regular body copy
+// tagline/intro copy beneath subtitles
+@bodyFontSize: 16px;
+@bodyLineHeight: 24px;
+.bodyFont() {
+	.font-rule(@bodyFontSize, @bodyLineHeight);
+}
+
+@smallFontSize: 14px;
+@smallLineHeight: 21px;
+.smallFont() {
+	.font-rule(@smallFontSize, @smallLineHeight);
+}
+
+@micetypeFontSize: 12px;
+@micetypeLineHeight: 16px;
+.micetypeFont() {
+	.font-rule(@micetypeFontSize, @micetypeLineHeight);
+}
+
+@baseFontSize: 14px;
+
+// full display overrides
+@fullDisplayFontSize: 54px;
+@fullDisplayLineHeight: 54px;
+.fullDisplayFont() {
+	.font-rule(@fullDisplayFontSize, @fullDisplayLineHeight);
+}
+
+@fullTitleFontSize: 42px;
+@fullTitleLineHeight: 45px;
+.fullTitleFont() {
+	.font-rule(@fullTitleFontSize, @fullTitleLineHeight);
+}
+
+@fullSubtitleFontSize: 28px;
+@fullSubtitleLineHeight: 36px;
+.fullSubtitleFont() {
+	.font-rule(@fullSubtitleFontSize, @fullSubtitleLineHeight);
+}
+
+@fullSubtitle2FontSize: 20px;
+
+@fullIntroFontSize: 20px;
+@fullIntroLineHeight: 30px;
+.fullIntroFont() {
+	.font-rule(@fullIntroFontSize, @fullIntroLineHeight);
+}
+
+@smallButtonFontSize: 13px;
+
+// font families
+@font-family: 'ProximaNova', 'Arial', 'Helvetica', sans-serif;
+
+//font-weights
+@font-medium: 500;
+@font-semi-bold: 600;
+@semi-bold: 600;	// deprecated: use 'font-semi-bold'
+
+// Z-indexes
+@autoCompleteZ: 2000;
+@headerZ: 7777;
+@subNavZ: 8888;
+@notificationsZ: 8888;
+@responsiveMenuZ: 9999;
+@popupZ: 10000;
+@captionZ: 10000;
+@mainNavZ: 1000;
+
+/********** Mixin Functions **********/
+// ruleset generators
+.all-caps () {
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+}
+.border(@border-rule: border, @borderColor: @lightGrey) {
+	@{border-rule}: 1px solid @borderColor;
+}
+.circle (@height) {
+	height: @height;
+	width: @height;
+	.border-radius(ceil(@height/2));
+}
+.colouredElement(@colour) {
+	border: 1px solid @colour;
+	background-color: lighten(@colour, 45%);
+	color: darken(@colour, 10%);
+}
+.inputColours(){
+	border-color: @lightBlue;
+	background-color: @subtleBlue;
+}
+.centerJustifyOnly() {
+	margin-left: auto;
+	margin-right: auto;
+}
+.pointer-arrow(@size: 10px) {
+	background-color: @white;
+	content: " ";
+	display: block;
+	height: @size;
+	position: absolute;
+	.transform(rotate(45deg));
+	width: @size;
+	margin-left: -@size/2;
+}
+.svgBackground(@height, @width, @style, @path, @fullRules){
+	background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='@{width}' height='@{height}'><path style='@{style}' d='@{path}'/></svg>") @fullRules;
+}
+.tingTransparency(@rule: background-color, @alpha: .5) {
+  @{rule}: rgba(0, 170, 238, @alpha);
+}
+.full-page-height(@hasParent: true) {
+	.display-flex();
+	.flex-value(flex-direction, column);
+	& when (@hasParent = true) {
+		.flex-value(flex-grow, 1);
+	}
+}
+
+// calculated ruleset generators
+// sets the font size and line height combinations that are frequenctly used
+// helps determine top margin when a desired top margin is required and line height isn't default
+.font-rule(@fontSize, @lineHeight, @targetMargin: 0) {
+	font-size: @fontSize;
+	line-height: @lineHeight;
+	.margin-rule(@fontSize, @lineHeight, top, @targetMargin);
+}
+// helps determine the margin when the line height isn't default
+.margin-rule(@fontSize, @lineHeight, @location: top, @targetMargin: 0) {
+  margin-@{location}: @targetMargin - round((@lineHeight - @fontSize) * .66);
+}
+// helps determine the max width of a flex block in pixal value
+.max-width-rule(@cols) {
+	.size-rule(@cols, max-width);
+}
+.size-rule(@cols, @rule: width) {
+  @{rule}: unit(@cols * .01)*@max-width;
+}
+.inline-margin(@targetMargin, @location, @fontSize: @baseFontSize) {
+	margin-@{location}: @targetMargin - @fontSize/3;
+}
+
+// helps to reset fonts if inherited fonts are conflicting
+.reset-font-rule(@fontSize) {
+	font-size: @fontSize;
+	line-height: @fontSize;
+	margin-top: 0;
+}
+
+/*
+@containterPercentage is how much of full width the parent is
+@goalPercentage is how much of the full width we want the outcome to be
+
+example, we want a matched pair of blocks to take up 82% of the total, but they are in a container which takes up 99% of the whole.
+.fixedColumns(width, 99%, 82%);
+
+Commonly used container Percentages
+82%: 	10 columns (@10cols)
+65%: 8 columns (@8cols)
+48%: 6 columns (@6cols)
+3%: 		gutter
+5.5%: 	column
+*/
+.fixedColumns(@rule, @containerPercentage , @goalPercentage) {
+	@ratio: 100 / @containerPercentage;
+	@{rule}: round(@goalPercentage * @ratio, 2);
+}
+
+// browser compatibility
+.border-radius (@radius: 9px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	-ms-border-radius: @radius;
+	-o-border-radius: @radius;	// needed? property exists?
+	border-radius: @radius;
+}
+.box-sizing (@type: border-box) {
+	-webkit-box-sizing: @type;
+	-moz-box-sizing: @type;
+	-ms-box-sizing: @type;
+	-o-box-sizing: @type;
+	box-sizing: @type;
+}
+.box-shadow (@string) {
+	-webkit-box-shadow: @string;
+	-moz-box-shadow: @string;
+	box-shadow: @string;
+}
+.column-value (@property, @value) {
+	-webkit-column-@{property}: @value;
+    -moz-column-@{property}: @value;
+    column-@{property}: @value;
+}
+.columns (@count, @width) {
+	-webkit-columns: @count @width;
+    -moz-columns: @count @width;
+    columns: @count @width;
+}
+.display-flex () {
+	display: -webkit-box;	// OLD - iOS 6-, Safari 3.1-6
+	display: -moz-box;	// OLD - Firefox 19- (buggy but mostly works)
+	display: -ms-flexbox;	// TWEENER - IE 10
+	display: -webkit-flex;	// NEW - Chrome
+	display: -o-flex;	// needed? property exists?
+	display: flex;	// NEW, Spec - Opera 12.1, Firefox 20+
+}
+.flex-value (@property, @value)  {
+	-webkit-box-@{property}: @value;	// OLD - iOS 6-, Safari 3.1-6
+	-moz-box-@{property}: @value;	// OLD - Firefox 19- (buggy but mostly works)
+	-webkit-@{property}: @value;	// NEW - Chrome
+	-o-@{property}: @value;	// needed? property exists?
+	@{property}: @value;	// NEW, Spec - Opera 12.1, Firefox 20+
+}
+.gradient (@startColor, @endColor) {
+	background-color: @startColor;
+	background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+	background: -webkit-linear-gradient(top, @startColor, @endColor);
+	background: -moz-linear-gradient(top, @startColor, @endColor);
+	background: -ms-linear-gradient(top, @startColor, @endColor);
+	background: -o-linear-gradient(top, @startColor, @endColor);
+	background: linear-gradient(to bottom, @startColor, @endColor);
+}
+.horizontal-gradient (@startColor, @endColor) {
+	background-color: @startColor;
+	background: -webkit-gradient(linear, left top, right top, from(@startColor), to(@endColor));
+	background: -webkit-linear-gradient(left, @startColor, @endColor);
+	background: -moz-linear-gradient(left, @startColor, @endColor);
+	background: -ms-linear-gradient(left, @startColor, @endColor);
+	background: -o-linear-gradient(left, @startColor, @endColor);
+	background: linear-gradient(to right, @startColor, @endColor);
+}
+.opacity (@opacity: 0.5) {
+	-webkit-opacity: @opacity;
+	-moz-opacity: @opacity;
+	opacity: @opacity;
+}
+.placeholder(@color: @grey) {
+	::placeholder {
+		color: @color;
+	}
+	::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+		color:@color;
+	}
+	:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	   color:@color;
+	   opacity:  1;
+	}
+	::-moz-placeholder { /* Mozilla Firefox 19+ */
+	   color:@color;
+	   opacity:  1;
+	}
+	:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	   color:@color;
+	}
+	:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+	  color:@color;
+	}
+}
+.transform (@string) {
+	-webkit-transform: @string;
+	-moz-transform: @string;
+	-ms-transform: @string;
+	-o-transform: @string;
+	transform: @string;
+}
+.transition ( @property, @duration: 0.1s, @style: ease) {
+	-webkit-transition-property: @property;
+	-webkit-transition-duration: @duration;
+	-webkit-transition-timing-function: @style;
+
+	-moz-transition-property: @property;
+	-moz-transition-duration: @duration;
+	-moz-transition-timing-function: @style;
+
+	-ms-transition-property: @property;
+	-ms-transition-duration: @duration;
+	-ms-transition-timing-function: @style;
+
+	-o-transition-property: @property;
+	-o-transition-duration: @duration;
+	-o-transition-timing-function: @style;
+
+	transition-property: @property;
+	transition-duration: @duration;
+	transition-timing-function: @style;
+}
+.transition-property (@property, @value) {
+	-webkit-transition-@{property}: @value;
+	-moz-transition-@{property}: @value;
+	-ms-transition-@{property}: @value;
+	-o-transition-@{property}: @value;
+	transition-@{property}: @value;
+}
+
+/**
+ 	* @style text-decoration for browser compatibility
+	*
+	* @description
+	*  Variable used to define the text-decoration style of element to work accross different browsers
+**/
+.text-decoration (@property, @value) {
+	-webkit-text-decoration-@{property}: @value;
+	-moz-text-decoration-@{property}: @value;
+	-ms-text-decoration-@{property}: @value;
+	-o-text-decoration-@{property}: @value;
+	text-decoration-@{property}: @value;
+}
+
+// Don't think we use this anymore. Commented out December 21 2016. Delete if not used by April 2016
+// Used to create scalable page banners for pages
+// .pageBanner(@bgImage, @paddingType, @backgroundType) {
+// 	background-image: @bgImage;
+// 	background-repeat: no-repeat;
+// 	background-position: center bottom;
+// 	//max-height: 550px;
+// 	& when (@backgroundType = true) {
+// 		background-size: 100%;
+// 	}
+// 	& when (@backgroundType = false) {
+// 		background-size: inherit;
+// 	}
+// 	& when (@paddingType = true) {
+// 		padding-bottom: 50%;
+// 	}
+// 	& when (@paddingType = false) {
+// 		padding-bottom: 0;
+// 	}
+// }

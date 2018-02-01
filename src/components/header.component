@@ -1,20 +1,19 @@
-<can-component tag="a-c">
+<can-component tag="header-common">
   <style type="less">
 		@import "../constants.less";
     display: block;
 
-		background-color: @subtleGrey;
+		h1 {
+			background-color: @tingBlue;
+		}
   </style>
   <view>
-    <p>{{message}}</p>
+	<header><h1>Loading Out of Order</h1></header>
   </view>
   <script type="view-model">
     import DefineMap from 'can-define/map/';
 
     export default DefineMap.extend({
-      message: {
-        value: 'This is the a-c component'
-      }
     });
   </script>
 </can-component>

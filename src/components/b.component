@@ -1,5 +1,6 @@
 <can-component tag="b-c">
   <style type="less">
+		@import "../constants.less";
     display: block;
 
     p { font-weight: bold; }
@@ -9,7 +10,6 @@
   </view>
   <script type="view-model">
     import DefineMap from 'can-define/map/';
-    import './shared.css';
 
     export default DefineMap.extend({
       message: {
